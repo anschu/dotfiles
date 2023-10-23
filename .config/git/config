@@ -1,0 +1,51 @@
+# This is Git's per-user configuration file.
+[user]
+    name = André Schulz
+
+[core]
+    autocrlf = input
+    pager = delta
+    editor = nvim
+
+[credential]
+    helper = cache
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    features = side-by-side line-numbers decorations
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+
+[pull]
+    rebase = false
+
+[push]
+    autoSetupRemote = true
+
+[diff]
+    tool = nvimdiff2
+    colorMoved = default
+
+[difftool]
+    prompt = false
+
+[difftool "nvimdiff2"]
+    cmd = "nvim -d $LOCAL $REMOTE -c 'wincmd w' -c 'wincmd L'"
+
+[merge]
+    tool = nvimdiff4
+    conflictstyle = diff3
+    prompt = false
+
+[mergetool]
+    keepBackup = false
+
+[mergetool "nvimdiff4"]
+    cmd = "nvim -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd w' -c 'wincmd J'"

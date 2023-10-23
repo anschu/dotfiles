@@ -1,0 +1,61 @@
+" htps://github.com/JetBrains/ideavim
+" :actionslist
+
+let mapleader=" "
+
+" plugins
+set ideajoin
+set surround
+set commentary
+set highlightedyank
+set showmode
+set clipboard=unnamedplus,unnamed
+set relativenumber number
+set showmode
+set scrolloff=5
+set incsearch
+
+map Q gq
+
+set which-key
+set notimeout
+set timeoutlen=5000
+
+let g:WhichKeyDesc_file_explorer        = "<leader>e file explorer"
+let g:WhichKeyDesc_find_file        = "<leader><leader> find files"
+let g:WhichKeyDesc_split_vertical        = "<leader>\\ vertical split"
+let g:WhichKeyDesc_split_horizontal        = "<leader>-  horizontal split"
+let g:WhichKeyDesc_buffer        = "<leader>b  buffer"
+let g:WhichKeyDesc_debug        = "<leader>d  debug"
+let g:WhichKeyDesc_code = "<leader>c code"
+let g:WhichKeyDesc_file_find  = "<leader>f file\/find"
+let g:WhichKeyDesc_git  = "<leader>g git"
+let g:WhichKeyDesc_window  = "<leader>w windows"
+let g:WhichKeyDesc_tools  = "<leader>o tools"
+
+map <leader>ff <Action>(GotoFile)
+map <leader><leader> <Action>(GotoFile)
+map <leader>fg <Action>(FindInPath)
+
+map <leader>dd <Action>(Debug)
+map <leader>dt <Action>(Stop)
+map <leader>db <Action>(ToggleLineBreakpoint)
+
+map <leader>ot <Action>(OpenTerminal)
+
+map <leader>cr <Action>(RenameElement)
+map <leader>cf <Action>(ReformatCode)
+
+map <leader>w <Action>(CloseActiveTab)
+
+map <S-l> <Action>(NextTab)
+map <S-h> <Action>(PreviousTab)
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+map <C-^> <leader><tab>
+
+set NERDTree
+map <leader>e :NERDTreeFind<CR>
