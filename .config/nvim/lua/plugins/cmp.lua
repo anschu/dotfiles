@@ -32,7 +32,7 @@ return {
     lsp_zero.extend_cmp()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
-    -- local cmp_action = lsp_zero.cmp_action()
+    local cmp_action = lsp_zero.cmp_action()
 
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
@@ -64,29 +64,12 @@ return {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete({}),
         ['<CR>'] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
+          select = false,
         }),
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
+        ['<Tab>'] = cmp_action.luasnip_supertab(),
+        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
       }),
       formatting = lsp_zero.cmp_format(),
       sources = cmp.config.sources({
@@ -99,7 +82,7 @@ return {
         { name = 'buffer' },
       }),
       experimental = {
-        ghost_text = true,
+        ghost_text = false,
       },
     }
   end,

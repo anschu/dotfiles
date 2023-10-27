@@ -11,8 +11,17 @@ return {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.stylelint,
-        null_ls.builtins.diagnostics.phpcs,
-        null_ls.builtins.formatting.phpcbf,
+        null_ls.builtins.diagnostics.phpcs.with({
+          extra_args = {
+            '--standard=PSR2',
+          },
+        }),
+        null_ls.builtins.formatting.phpcbf.with({
+          extra_args = {
+            '--standard=PSR2',
+          },
+        }),
+        null_ls.builtins.formatting.shfmt,
       },
     }
   end,

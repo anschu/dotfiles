@@ -17,10 +17,10 @@ return function()
   local hints = ''
   local info = ''
 
-  if count['errors'] ~= 0 then errors = string.format('  %s', count['errors']) end
-  if count['warnings'] ~= 0 then warnings = string.format('  %s', count['warnings']) end
-  if count['hints'] ~= 0 then hints = string.format('  %s', count['hints']) end
-  if count['info'] ~= 0 then info = string.format('   %s', count['info']) end
+  if count['errors'] ~= 0 then errors = string.format(' E:%s', count['errors']) end
+  if count['warnings'] ~= 0 then warnings = string.format(' W: %s', count['warnings']) end
+  if count['hints'] ~= 0 then hints = string.format(' I: %s', count['hints']) end
+  if count['info'] ~= 0 then info = string.format(' H: %s', count['info']) end
 
   return string.format('%s%s%s%s', errors, warnings, hints, info)
 end

@@ -13,6 +13,14 @@ local find_files = function(opts)
   require('telescope.builtin').find_files(opts)
 end
 
+local git_files = function(opts)
+  if is_git_repo() then
+    require('telescope.builtin').git_files({ show_untracked = true })
+  else
+    find_files(opts)
+  end
+end
+
 local live_grep = function(opts)
   if is_git_repo() then opts = { cwd = get_git_root() } end
   require('telescope.builtin').live_grep(opts)
@@ -51,7 +59,7 @@ return {
         { '<leader>b', function() tb.buffers() end, desc = 'Buffers' },
         { '<leader>sr', function() tb.oldfiles({ cwd_only = true }) end, desc = 'Recent Files' },
         { '<leader>r', function() tb.oldfiles({ cwd_only = true }) end, desc = 'Recent files' },
-        { '<leader><space>', function() find_files() end, desc = 'Find files' },
+        { '<leader><space>', function() git_files() end, desc = 'Find files' },
         { '<leader>sf', function() find_files() end, desc = 'Files' },
         { '<leader>sw', function() grep_string() end, desc = 'Word' },
         { '<leader>sg', function() live_grep() end, desc = 'Grep' },

@@ -24,6 +24,8 @@ return {
         'prettier',
         'phpcs',
         'phpcbf',
+        'shellcheck',
+        'shfmt',
       },
     },
     config = function(_, opts)
@@ -56,9 +58,8 @@ return {
     config = function()
       local lsp_zero = require('lsp-zero')
       lsp_zero.extend_lspconfig()
-
       lsp_zero.on_attach(function(_, bufnr)
-        lsp_zero.default_keymaps({ buffer = bufnr })
+        lsp_zero.default_keymaps({ buffer = bufnr, preserve_mappings = false })
 
         local map = function(mode, keys, func, desc) vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc }) end
 
@@ -71,15 +72,10 @@ return {
         map('n', '<leader>cll', vim.cmd.LspLog, 'Lsp Log')
         map('n', '<leader>clr', vim.cmd.LspRestart, 'Lsp Restart')
 
-        map('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
         map('n', '<leader>cr', vim.lsp.buf.rename, 'Rename')
-        map('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, 'Format code')
-        map('n', '<leader>cf', function() vim.lsp.buf.format({ async = true }) end, 'Format code')
+        map('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, 'Format Code')
+        map('n', '<leader>cf', function() vim.lsp.buf.format({ async = true }) end, 'Format Code')
         map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, 'Code Action')
-
-        map('n', 'gl', vim.diagnostic.open_float, 'Diagnostic float')
-        map('n', '[d', vim.diagnostic.goto_prev, 'Previous Diagnostic')
-        map('n', ']d', vim.diagnostic.goto_next, 'Next Diagnostic')
       end)
 
       lsp_zero.format_on_save({
@@ -105,13 +101,13 @@ return {
           'emmet_ls',
           'dockerls',
           'docker_compose_language_service',
-          'phpactor',
+          'intelephense',
           'yamlls',
+          'bashls',
+          'jsonls',
         },
         handlers = {
           lsp_zero.default_setup,
-
-          rust_analyzer = function() require('rust-tools').setup() end,
 
           taplo = function()
             require('lspconfig').taplo.setup({

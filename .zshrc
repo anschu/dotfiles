@@ -1,4 +1,4 @@
- export PATH=$PATH:$HOME/.composer/vendor/bin:$HOME/KUHdo/flutter/bin
+export PATH=$PATH:$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$HOME/.composer/vendor/bin:$HOME/KUHdo/flutter/bin
 
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
@@ -9,14 +9,13 @@ eval "$(op completion zsh)"
 # eval "$(docker completion zsh)"
 # eval "$(auth0 completion zsh)"
 eval "$(gh completion -s zsh)"
+eval "$(direnv hook zsh)"
 
 export EDITOR="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 alias v="vim"
 alias vi="vim"
-alias t="tmux"
-alias ta="tmux a"
 alias f="yazi"
 alias g="lazygit"
 alias gd="gh dash"

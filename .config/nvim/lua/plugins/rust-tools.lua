@@ -23,20 +23,36 @@ return {
           auto_focus = true,
         },
         on_initialized = function()
-          vim.cmd([[
-                  augroup RustLSP
-                    autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
-                    autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
-                    autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
-                  augroup END
-                ]])
+          local group = vim.api.nvim_create_augroup('RustLSP', { clear = false })
+          local pattern = '*.rs'
+
+          vim.api.nvim_create_autocmd('CursorHold', {
+            callback = vim.lsp.buf.document_highlight,
+            group = group,
+            pattern = pattern,
+          })
+
+          vim.api.nvim_create_autocmd({ 'CursorMoved', 'InsertEnter' }, {
+            callback = vim.lsp.buf.clear_references,
+            group = group,
+            pattern = pattern,
+          })
+          vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+            callback = vim.lsp.codelens.refresh,
+            group = group,
+            pattern = pattern,
+          })
         end,
       },
       server = {
         on_attach = function(_, bufnr)
           local rust_tools = require('rust-tools')
-          -- vim.keymap.set('n', 'K', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
-          vim.keymap.set('n', '<C-space>', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+          vim.keymap.set(
+            'n',
+            '<C-space>',
+            rust_tools.hover_actions.hover_actions,
+            { buffer = bufnr, desc = 'Hover Action' }
+          )
           vim.keymap.set(
             'n',
             '<leader>ca',

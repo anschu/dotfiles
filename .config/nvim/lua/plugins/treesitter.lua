@@ -30,7 +30,8 @@ return {
       'phpdoc',
       'dockerfile',
       'diff',
-      'yaml'
+      'yaml',
+      'json'
     },
     auto_install = true,
     highlight = {

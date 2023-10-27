@@ -14,7 +14,7 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
--- vim.o.winbar = '%=%m %f'
+vim.o.winbar = ' '
 
 vim.g.netrw_liststyle = 3
 vim.g.netrw_hide = 0
