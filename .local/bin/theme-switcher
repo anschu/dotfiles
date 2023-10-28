@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+THEME_FILE="$XDG_CONFIG_HOME/colorscheme"
+
+DARK_THEME=nightfox
+LIGHT_THEME=dayfox
+
+CUR=$(<"$THEME_FILE")
+
+[ "$CUR" == "$LIGHT_THEME" ] && COLORSCHEME="$DARK_THEME"
+[ "$CUR" == "$DARK_THEME" ] && COLORSCHEME="$LIGHT_THEME"
+
+echo "$COLORSCHEME" >"$THEME_FILE"
+
+switch_alacritty() {
+	CONFIG_PATH="$HOME/.config/alacritty/alacritty.yml"
+
+	sed -i '' -e "s/\/themes\/.*\.yml/\/themes\/$COLORSCHEME\.yml/" "$CONFIG_PATH"
+}
+
+switch_tmux() {
+	CONFIG_PATH="$HOME/.config/tmux/tmux.conf"
+
+	sed -i '' -e "s/\/themes\/.*\.tmux/\/themes\/$COLORSCHEME\.tmux/" "$CONFIG_PATH" && tmux source-file "$CONFIG_PATH"
+}
+
+switch_delta() {
+	CONFIG_PATH="$HOME/.config/git/config"
+
+	[ "$CUR" == "$LIGHT_THEME" ] && OLD="true" && NEW="false"
+	[ "$CUR" == "$DARK_THEME" ] && OLD="false" && NEW="true"
+
+	sed -i '' -e "s/light = $OLD/light = $NEW/" "$CONFIG_PATH"
+}
+
+switch_neovim() {
+	for SERVER_PIPE in /var/folders/*/*/T/nvim."$USER"/*/nvim.*.0; do
+		CMD=":colorscheme $COLORSCHEME<CR>"
+		nvim --server "$SERVER_PIPE" --remote-send "$CMD" 2>/dev/null
+	done
+}
+
+switch_alacritty
+switch_tmux
+switch_delta
+switch_neovim
