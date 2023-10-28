@@ -10,8 +10,11 @@ return {
     },
   },
   config = function()
-    vim.cmd.colorscheme('nightfox')
-    -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-    -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+    local colorscheme = vim.fn.system("head -n1 $XDG_CONFIG_HOME/colorscheme | tr -d '\n'")
+    if colorscheme then
+      vim.cmd.colorscheme(colorscheme)
+    else
+      vim.cmd.colorscheme('nightfox')
+    end
   end,
 }

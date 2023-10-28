@@ -31,7 +31,7 @@ return {
       'dockerfile',
       'diff',
       'yaml',
-      'json'
+      'json',
     },
     auto_install = true,
     highlight = {

@@ -50,20 +50,20 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'debugloop/telescope-undo.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-      { 'ThePrimeagen/git-worktree.nvim', opts = {} },
+      { 'ThePrimeagen/git-worktree.nvim',           opts = {} },
     },
     cmd = 'Telescope',
     keys = function()
       local tb = require('telescope.builtin')
       return {
-        { '<leader>b', function() tb.buffers() end, desc = 'Buffers' },
-        { '<leader>sr', function() tb.oldfiles({ cwd_only = true }) end, desc = 'Recent Files' },
-        { '<leader>r', function() tb.oldfiles({ cwd_only = true }) end, desc = 'Recent files' },
-        { '<leader><space>', function() git_files() end, desc = 'Find files' },
-        { '<leader>sf', function() find_files() end, desc = 'Files' },
-        { '<leader>sw', function() grep_string() end, desc = 'Word' },
-        { '<leader>sg', function() live_grep() end, desc = 'Grep' },
-        { '<leader>sh', function() tb.help_tags() end, desc = 'Help' },
+        { '<leader>b',       function() tb.buffers() end,                     desc = 'Buffers' },
+        { '<leader>sr',      function() tb.oldfiles({ cwd_only = true }) end, desc = 'Recent Files' },
+        { '<leader>r',       function() tb.oldfiles({ cwd_only = true }) end, desc = 'Recent files' },
+        { '<leader><space>', function() git_files({ hidden = true }) end,     desc = 'Find files' },
+        { '<leader>sf',      function() find_files() end,                     desc = 'Files' },
+        { '<leader>sw',      function() grep_string() end,                    desc = 'Word' },
+        { '<leader>sg',      function() live_grep() end,                      desc = 'Grep' },
+        { '<leader>sh',      function() tb.help_tags() end,                   desc = 'Help' },
         {
           '<leader>/',
           function()
@@ -74,8 +74,8 @@ return {
           end,
           desc = 'Search in current buffer',
         },
-        { '<leader>sk', function() tb.keymaps() end, desc = 'Keymaps' },
-        { '<leader>u', function() require('telescope').extensions.undo.undo() end, desc = 'Undo' },
+        { '<leader>sk', function() tb.keymaps() end,                                desc = 'Keymaps' },
+        { '<leader>u',  function() require('telescope').extensions.undo.undo() end, desc = 'Undo' },
       }
     end,
     config = function()

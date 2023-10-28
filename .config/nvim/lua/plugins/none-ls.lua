@@ -8,7 +8,7 @@ return {
     local null_ls = require('null-ls')
     return {
       sources = {
-        null_ls.builtins.formatting.stylua,
+        -- null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.stylelint,
         null_ls.builtins.diagnostics.phpcs.with({

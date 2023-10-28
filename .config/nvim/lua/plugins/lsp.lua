@@ -84,7 +84,7 @@ return {
           timeout_ms = 10000,
         },
         servers = {
-          ['lua_ls'] = { 'null_ls' },
+          ['lua_ls'] = { 'lua' },
           ['rust_analyzer'] = { 'rust' },
           ['eslint'] = { 'javascript', 'typescript', 'vue' },
         },

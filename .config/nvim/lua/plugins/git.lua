@@ -1,7 +1,7 @@
 return {
   {
     'tpope/vim-fugitive',
-    cmd = {'Git', 'Gwrite'},
+    cmd = { 'Git', 'Gwrite' },
   },
   'tpope/vim-rhubarb',
   {
@@ -15,7 +15,7 @@ return {
     'lewis6991/gitsigns.nvim',
     opts = {
       on_attach = function(bufnr)
-        require('which-key').register({['<leader>g'] = { name = 'Git' }})
+        require('which-key').register({ ['<leader>g'] = { name = 'Git' } })
 
         vim.keymap.set(
           'n',
