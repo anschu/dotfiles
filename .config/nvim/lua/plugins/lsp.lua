@@ -51,7 +51,8 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',        tag = 'legacy',                            opts = {} },
+      { 'simrat39/rust-tools.nvim', dependencies = { 'mfussenegger/nvim-dap' } },
     },
     cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
     event = { 'BufReadPre', 'BufNewFile' },
@@ -108,26 +109,9 @@ return {
         },
         handlers = {
           lsp_zero.default_setup,
-
-          taplo = function()
-            require('lspconfig').taplo.setup({
-              on_attach = function(_, bufnr)
-                vim.keymap.set('n', 'K', function()
-                  if vim.fn.expand('%:t') == 'Cargo.toml' and require('crates').popup_available() then
-                    require('crates').show_popup()
-                  else
-                    vim.lsp.buf.hover()
-                  end
-                end, { buffer = bufnr, desc = 'Show Crate Documentation' })
-              end,
-            })
-          end,
-
-          volar = function()
-            require('lspconfig').volar.setup({
-              filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-            })
-          end,
+          rust_analyzer = require('plugins.lsp.rust_analyzer'),
+          taplo = require('plugins.lsp.taplo'),
+          volar = require('plugins.lsp.volar'),
         },
       })
     end,
