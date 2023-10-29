@@ -12,4 +12,5 @@ vim.keymap.set(
   '<CMD>!tmux new-window -c ' .. vim.fn.getcwd() .. ' -- lazygit <CR><CR>',
   { desc = 'LazyGit', silent = true }
 )
+
 vim.keymap.set('n', '<leader>ol', '<CMD>Lazy<CR>', { desc = 'Lazy' })
