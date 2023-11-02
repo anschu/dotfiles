@@ -3,15 +3,13 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/.config/tmux/plugins/t-smart-tmux-sessi
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
-HISTFILE=$XDG_CACHE_HOME/zsh/history
-
+eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
 eval "$(op completion zsh)"
 # eval "$(docker completion zsh)"
 # eval "$(auth0 completion zsh)"
 eval "$(gh completion -s zsh)"
-eval "$(direnv hook zsh)"
 
 export EDITOR="nvim"
 
@@ -25,8 +23,8 @@ alias vimdiff="nvim -d"
 alias v="vim"
 alias vi="vim"
 alias f="yazi"
-alias g="lazygit"
-alias gd="gh dash"
+alias gui="lazygit"
+alias ghd="gh dash"
 
 alias copy="pbcopy"
 alias top="btm"

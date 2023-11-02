@@ -87,7 +87,7 @@ return {
         servers = {
           ['lua_ls'] = { 'lua' },
           ['rust_analyzer'] = { 'rust' },
-          ['eslint'] = { 'javascript', 'typescript', 'vue' },
+          -- ['eslint'] = { 'javascript', 'typescript', 'vue' },
         },
       })
 

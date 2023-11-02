@@ -13,12 +13,12 @@ return {
         null_ls.builtins.formatting.stylelint,
         null_ls.builtins.diagnostics.phpcs.with({
           extra_args = {
-            '--standard=PSR2',
+            "--standard='phpcs.xml'",
           },
         }),
         null_ls.builtins.formatting.phpcbf.with({
           extra_args = {
-            '--standard=PSR2',
+            "--standard='phpcs.xml'",
           },
         }),
         null_ls.builtins.formatting.shfmt,
