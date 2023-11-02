@@ -1,7 +1,7 @@
 return {
   {
     'tpope/vim-fugitive',
-    cmd = { 'Git', 'Gwrite' },
+    cmd = { 'Git', 'Gwrite', 'Glog' },
   },
   'tpope/vim-rhubarb',
   {
@@ -26,6 +26,7 @@ return {
 
         vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { buffer = bufnr, desc = 'Status' })
         vim.keymap.set('n', '<leader>ga', vim.cmd.GWrite, { buffer = bufnr, desc = 'Add' })
+        vim.keymap.set('n', '<leader>gl', vim.cmd.Glog, { buffer = bufnr, desc = 'Log' })
 
         vim.keymap.set(
           'n',
