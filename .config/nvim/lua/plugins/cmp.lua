@@ -78,6 +78,7 @@ return {
         { name = 'nvim_lsp' },
         { name = 'path' },
         { name = 'copilot' },
+        { name = 'vim-dadbod-completion' }
       }, {
         { name = 'buffer' },
       }),

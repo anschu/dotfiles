@@ -42,16 +42,16 @@ return {
     opts = {
       pickers = {
         find_files = {
-          theme = "ivy",
+          theme = "dropdown",
           previewer = false,
         },
         git_files = {
-          theme = "ivy",
+          theme = "dropdown",
           hidden = true,
           previewer = false,
         },
         oldfiles = {
-          theme = "ivy",
+          theme = "dropdown",
           cwd_only = true,
           previewer = false,
         }
