@@ -1,44 +1,52 @@
 return {
   {
-    'tpope/vim-fugitive',
-    cmd = { 'Git', 'Gwrite', 'Glog' },
+    'folke/which-key.nvim',
+    opts = {
+      defaults = {
+        ['<leader>g'] = { name = 'Git' },
+      },
+    },
   },
-  'tpope/vim-rhubarb',
+
+  {
+    'tpope/vim-fugitive',
+    lazy = false,
+    keys = {
+      { '<leader>gs', '<CMD>Git<CR>',               desc = 'Status' },
+      { '<leader>gp', '<CMD>Git pull<CR>',          desc = 'Pull' },
+      { '<leader>gP', '<CMD>Git push<CR>',          desc = 'Push' },
+      { '<leader>ga', '<CMD>GWrite<CR>',            desc = 'Add' },
+      { '<leader>gl', '<CMD>Git log --oneline<CR>', desc = 'Log' },
+      { '<leader>gb', '<CMD>Git blame<CR>',         desc = 'Blame' },
+      { '<leader>go', '<CMD>GBrowse<CR>',           desc = 'Open in Browser' }
+    }
+  },
+
+  { 'tpope/vim-rhubarb', lazy = false },
+
   {
     'ThePrimeagen/git-worktree.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-    opts = {},
+    keys = function()
+      local t = require('telescope');
+      return {
+        { '<leader>gw', t.extensions.git_worktree.git_worktrees,       desc = 'Worktrees' },
+        { '<leader>gW', t.extensions.git_worktree.create_git_worktree, desc = 'Create worktree' }
+      }
+    end,
   },
+
   {
     'lewis6991/gitsigns.nvim',
     opts = {
       on_attach = function(bufnr)
-        require('which-key').register({ ['<leader>g'] = { name = 'Git' } })
-
         vim.keymap.set(
           'n',
           '<leader>gp',
           require('gitsigns').preview_hunk,
           { buffer = bufnr, desc = 'Preview git hunk' }
-        )
-
-        vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { buffer = bufnr, desc = 'Status' })
-        vim.keymap.set('n', '<leader>ga', vim.cmd.GWrite, { buffer = bufnr, desc = 'Add' })
-        vim.keymap.set('n', '<leader>gl', vim.cmd.Glog, { buffer = bufnr, desc = 'Log' })
-
-        vim.keymap.set(
-          'n',
-          '<leader>gw',
-          function() require('telescope').extensions.git_worktree.git_worktrees() end,
-          { desc = 'Worktrees' }
-        )
-        vim.keymap.set(
-          'n',
-          '<leader>gc',
-          function() require('telescope').extensions.git_worktree.create_git_worktree() end,
-          { desc = 'Create worktree' }
         )
 
         local gs = package.loaded.gitsigns

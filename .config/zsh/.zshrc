@@ -7,8 +7,6 @@ eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
 eval "$(op completion zsh)"
-# eval "$(docker completion zsh)"
-# eval "$(auth0 completion zsh)"
 eval "$(gh completion -s zsh)"
 
 export EDITOR="nvim"
@@ -42,8 +40,6 @@ alias ss="sail artisanil shell"
 alias tinker="sail artisan tinker"
 alias sacc="sail artisan cache:clear"
 
-alias npm="pnpm"
-
 alias dot="/usr/bin/git --git-dir=$HOME/Repos/dotfiles/ --work-tree=$HOME"
-alias dotg="lazygit --git-dir=$HOME/Repos/dotfiles --work-tree=$HOME"
+alias dotui="lazygit --git-dir=$HOME/Repos/dotfiles --work-tree=$HOME"
 
