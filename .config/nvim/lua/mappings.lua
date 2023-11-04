@@ -5,6 +5,7 @@ vim.keymap.set('n', '<esc>', vim.cmd.noh, { silent = true })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader><tab>', '<C-^>', { desc = 'Last buffer', silent = true })
+vim.keymap.set('n', '<leader>q', vim.cmd.quit, { desc = 'Close Window', silent = true })
 vim.keymap.set(
   'n',
   '<leader>og',
