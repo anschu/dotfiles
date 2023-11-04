@@ -25,3 +25,8 @@ vim.g.netrw_localmkdir = 'mkdir -p'
 vim.g.netrw_localrmdir = 'rm -r'
 vim.g.netrw_winsize = 0
 vim.g.netrw_preview = 1
+
+local colorscheme = vim.fn.system("head -n1 $XDG_CONFIG_HOME/colorscheme | tr -d '\n'")
+if colorscheme then
+  vim.o.background = colorscheme
+end
