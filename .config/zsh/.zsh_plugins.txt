@@ -2,6 +2,7 @@ zap-zsh/supercharge
 zap-zsh/completions
 zap-zsh/vim
 zap-zsh/fzf
+sindresorhus/pure
 wintermi/zsh-brew
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions

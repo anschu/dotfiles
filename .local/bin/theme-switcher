@@ -18,7 +18,7 @@ switch_alacritty() {
 switch_tmux() {
 	CONFIG_PATH="$HOME/.config/tmux/tmux.conf"
 
-	sed -i '' -e "s/\/themes\/.*\.tmux/\/themes\/$COLORSCHEME\.tmux/" "$CONFIG_PATH" && tmux source-file "$CONFIG_PATH" && tmux source-file "$CONFIG_PATH"
+	sed -i '' -e "s/$CUR\.tmux/$COLORSCHEME\.tmux/" "$CONFIG_PATH" && tmux source-file "$CONFIG_PATH"
 }
 
 switch_delta() {

@@ -52,4 +52,4 @@ key_bindings:
   - { key: Key0, mods: Command, chars: "\x010" }
 
 import:
-  - ~/.config/alacritty/themes/light.yml
+  - ~/.config/alacritty/themes/dark.yml

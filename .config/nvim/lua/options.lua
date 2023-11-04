@@ -30,3 +30,5 @@ local colorscheme = vim.fn.system("head -n1 $XDG_CONFIG_HOME/colorscheme | tr -d
 if colorscheme then
   vim.o.background = colorscheme
 end
+
+vim.o.statusline = [[%<%f %h%m%r %y%=%{v:register} %-14.(%l,%c%V%) %P]]

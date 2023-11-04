@@ -3,7 +3,6 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/.config/tmux/plugins/t-smart-tmux-sessi
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
-eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
 eval "$(op completion zsh)"

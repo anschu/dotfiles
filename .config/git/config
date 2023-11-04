@@ -17,7 +17,7 @@
     # features = side-by-side line-numbers decorations
     features = line-numbers decorations
     navigate = true 
-    light = true
+    light = false
 
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
