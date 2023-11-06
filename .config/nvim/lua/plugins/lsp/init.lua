@@ -26,6 +26,7 @@ return {
         'phpcbf',
         'shellcheck',
         'shfmt',
+        'sqlfluff'
       },
     },
     config = function(_, opts)
@@ -106,6 +107,7 @@ return {
           'yamlls',
           'bashls',
           'jsonls',
+          'sqlls'
         },
         handlers = {
           lsp_zero.default_setup,

@@ -18,7 +18,7 @@ font:
   normal:
     family: "JetBrainsMono Nerd Font"
   size:
-    14.5
+    15
 
     # \x1b = escape (useful for vim-related keybindings)
     # \x01 = control-a (the default tmux prefix)
@@ -39,6 +39,8 @@ key_bindings:
   - { key: S, mods: Command, chars: "\x01s" }
   - { key: O, mods: Command|Shift, chars: "\x01\x10" }
   - { key: O, mods: Command, chars: "\x01o" }
+  - { key: X, mods: Command, chars: "\x01x" }
+  - { key: C, mods: Command, chars: "\x01c" }
   - { key: Key0, mods: Command, chars: "\x010" }
   - { key: Key1, mods: Command, chars: "\x011" }
   - { key: Key2, mods: Command, chars: "\x012" }
@@ -52,4 +54,4 @@ key_bindings:
   - { key: Key0, mods: Command, chars: "\x010" }
 
 import:
-  - ~/.config/alacritty/themes/dark.yml
+  - ~/.config/alacritty/themes/light.yml

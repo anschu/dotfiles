@@ -32,7 +32,8 @@ return {
       'diff',
       'yaml',
       'json',
-      'http'
+      'http',
+      'sql'
     },
     auto_install = true,
     highlight = {

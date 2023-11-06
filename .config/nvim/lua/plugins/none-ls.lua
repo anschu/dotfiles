@@ -22,6 +22,9 @@ return {
           },
         }),
         null_ls.builtins.formatting.shfmt,
+        null_ls.builtins.formatting.sqlfluff.with({
+          extra_args = { "--dialect", "postgres" },
+        }),
       },
     }
   end,
