@@ -8,4 +8,14 @@ return {
   { 'echasnovski/mini.cursorword',  version = false, opts = {} },
   { 'echasnovski/mini.indentscope', version = false, opts = {} },
   { 'echasnovski/mini.splitjoin',   version = false, opts = {} },
+  { "folke/twilight.nvim",          opts = {} },
+  {
+    "folke/zen-mode.nvim",
+    keys = { {
+      '<leader>z',
+      function() require("zen-mode").toggle() end,
+      desc = "Zen-mode"
+    } },
+    opts = {}
+  },
 }
