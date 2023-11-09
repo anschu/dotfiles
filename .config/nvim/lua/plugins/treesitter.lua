@@ -33,7 +33,7 @@ return {
       'yaml',
       'json',
       'http',
-      'sql'
+      'sql',
     },
     auto_install = true,
     highlight = {

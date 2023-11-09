@@ -6,17 +6,27 @@ return {
     local ls = require('luasnip')
     ls.setup({
       snip_env = {
-        s = function(...)
-          local snip = ls.s(...)
-          table.insert(getfenv(2).ls_file_snippets, snip)
-        end,
-        parse = function(...)
-          local snip = ls.parser.parse_snippet(...)
-          table.insert(getfenv(2).ls_file_snippets, snip)
-        end,
+        s = ls.snippet,
+        i = ls.insert_node,
+        t = ls.text_node,
+        c = ls.choice_node,
+        sn = ls.snippet_node,
+        d = ls.dynamic_node,
+        fmt = require("luasnip.extras.fmt").fmt
       },
     })
 
     require('luasnip.loaders.from_lua').lazy_load()
+
+    vim.keymap.set({ "i", "s" }, "<C-l>", function()
+      if ls.choice_active() then
+        ls.change_choice(1)
+      end
+    end)
+    vim.keymap.set({ "i", "s" }, "<C-h>", function()
+      if ls.choice_active() then
+        ls.change_choice(-1)
+      end
+    end)
   end,
 }

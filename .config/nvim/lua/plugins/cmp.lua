@@ -33,6 +33,7 @@ return {
     local cmp = require('cmp')
     local luasnip = require('luasnip')
     local cmp_action = lsp_zero.cmp_action()
+    local cmp_format = require('lsp-zero').cmp_format()
 
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
@@ -60,30 +61,26 @@ return {
         expand = function(args) luasnip.lsp_expand(args.body) end,
       },
       mapping = cmp.mapping.preset.insert({
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<CR>'] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = false,
-        }),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
         ['<Tab>'] = cmp_action.luasnip_supertab(),
         ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
       }),
-      formatting = lsp_zero.cmp_format(),
+      formatting = cmp_format,
       sources = cmp.config.sources({
-        { name = 'creates' },
         { name = 'luasnip' },
-        { name = 'nvim_lsp' },
-        { name = 'path' },
-        { name = 'copilot' },
-        { name = 'vim-dadbod-completion' }
       }, {
+        { name = 'nvim_lsp' },
+        { name = 'creates' },
+        { name = 'vim-dadbod-completion' },
+      }, {
+        { name = 'copilot' },
+        { name = 'path' },
         { name = 'buffer' },
       }),
       experimental = {
-        ghost_text = false,
+        ghost_text = true,
       },
     }
   end,

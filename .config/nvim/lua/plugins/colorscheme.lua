@@ -13,18 +13,19 @@ return {
     config = function()
       if vim.o.background == "light" then
         vim.cmd.colorscheme('dayfox')
-      else
-        vim.cmd.colorscheme('carbonfox')
       end
     end,
   },
 
-  -- {
-  --   "rebelot/kanagawa.nvim",
-  --   config = function()
-  --     if vim.o.background == "dark" then
-  --       vim.cmd.colorscheme('kanagawa-dragon')
-  --     end
-  --   end,
-  -- }
+  {
+    "Mofiqul/vscode.nvim",
+    opts = {
+      style = 'dark'
+    },
+    config = function()
+      if vim.o.background == "dark" then
+        vim.cmd.colorscheme('vscode')
+      end
+    end,
+  }
 }
