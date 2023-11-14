@@ -3,8 +3,10 @@ return {
     'folke/which-key.nvim',
     opts = {
       defaults = {
-        ['<leader>s'] = { name = 'Search' },
+        ['<leader>s'] = { name = 'Search/Find' },
         ['<leader>c'] = { name = 'Code' },
+        ['<leader>dt'] = { name = 'Telescope' },
+        ['<leader>b'] = { name = 'Buffer' },
       },
     },
   },
@@ -16,8 +18,8 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
       'nvim-treesitter/nvim-treesitter',
+      'nvim-telescope/telescope-dap.nvim',
       'debugloop/telescope-undo.nvim',
-      "nvim-telescope/telescope-file-browser.nvim",
       "benfowler/telescope-luasnip.nvim",
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       { 'ThePrimeagen/git-worktree.nvim',           opts = {} },
@@ -27,13 +29,14 @@ return {
       local tb = require('telescope.builtin')
       local fn = require('plugins.telescope.functions')
       local ex = require('telescope').extensions
+
       return {
         { '<leader>ss',      tb.resume,                    desc = 'Resume' },
-        { '<leader>b',       tb.buffers,                   desc = 'Buffers' },
+        { '<leader>bb',      tb.buffers,                   desc = 'List' },
         { '<leader>sr',      tb.oldfiles,                  desc = 'Recent Files' },
-        { '<leader>r',       tb.oldfiles,                  desc = 'Recent files' },
+        { '<leader><space>', tb.oldfiles,                  desc = 'Recent files' },
         { '<leader>sx',      tb.diagnostics,               desc = 'Diagnostics' },
-        { '<leader><space>', fn.project_files,             desc = 'Find files' },
+        { '<leader>f',       fn.project_files,             desc = 'Find files' },
         { '<leader>sf',      fn.find_files,                desc = 'Files' },
         { '<leader>gf',      fn.git_files,                 desc = 'Files' },
         { '<leader>gg',      tb.git_branches,              desc = 'Branches' },
@@ -44,12 +47,15 @@ return {
         { '<leader>sm',      tb.marks,                     desc = 'Marks' },
         { '<leader>/',       tb.current_buffer_fuzzy_find, desc = 'Search in current buffer' },
         { '<leader>sk',      tb.keymaps,                   desc = 'Keymaps' },
-        { '<leader>u',       ex.undo.undo,                 desc = 'Undo' },
+        { '<leader>cu',      ex.undo.undo,                 desc = 'Undo' },
         { '<leader>cs',      tb.lsp_document_symbols,      desc = 'Symbols' },
-        { '<leader>cu',      tb.lsp_references,            desc = 'References' },
+        { '<leader>cd',      tb.lsp_references,            desc = 'References' },
         { '<leader>gc',      tb.git_commits,               desc = 'Commits' },
         { '<leader>cy',      ex.luasnip.luasnip,           desc = 'Snippets' },
-        { '<leader>e',       ex.file_browser.file_browser, desc = 'File browser' },
+        { '<leader>dtt',     ex.dap.commands,              desc = 'Commands' },
+        { '<leader>dtc',     ex.dap.configurations,        desc = 'configurations' },
+        { '<leader>dtb',     ex.dap.list_breakpoints,      desc = 'List Breakpoints' },
+        { '<leader>dtf',     ex.dap.frames,                desc = 'Frames' },
       }
     end,
     opts = {
@@ -83,11 +89,6 @@ return {
         }
       },
       extensions = {
-        file_browser = {
-          initial_mode = "normal",
-          theme = "dropdown",
-          previewer = false,
-        },
         undo = {
           initial_mode = "normal",
         },
@@ -104,7 +105,7 @@ return {
       require("telescope").load_extension "git_worktree"
       require("telescope").load_extension "undo"
       require("telescope").load_extension "luasnip"
-      require("telescope").load_extension "file_browser"
+      require('telescope').load_extension "dap"
     end,
   },
 }

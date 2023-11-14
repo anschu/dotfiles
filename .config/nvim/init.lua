@@ -18,3 +18,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins')
+
+vim.api.nvim_create_user_command('ThemeSwitcher',
+  function()
+    local background = vim.fn.system("head -n1 $XDG_CONFIG_HOME/colorscheme | tr -d '\n'")
+    if background then
+      vim.o.background = background
+    end
+
+    if vim.o.background == "dark" then
+      vim.cmd.colorscheme('vscode')
+    elseif vim.o.background == "light" then
+      vim.cmd.colorscheme('dayfox')
+    end
+  end,
+  {}
+)
+
+vim.cmd.ThemeSwitcher()
+

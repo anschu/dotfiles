@@ -26,7 +26,8 @@ return {
         'phpcbf',
         'shellcheck',
         'shfmt',
-        'sqlfluff'
+        'sqlfluff',
+        'php-debug-adapter',
       },
     },
     config = function(_, opts)
@@ -67,7 +68,7 @@ return {
 
         require('which-key').register({
           ['<leader>c'] = { name = 'Code' },
-          ['<leader>cl'] = { name = 'LSP' },
+          ['<leader>cl'] = { name = 'Lsp' },
         }, { buffer = bufnr })
 
         map('n', '<leader>cli', vim.cmd.LspInfo, 'Lsp Info')
@@ -75,7 +76,6 @@ return {
         map('n', '<leader>clr', vim.cmd.LspRestart, 'Lsp Restart')
 
         map('n', '<leader>cr', vim.lsp.buf.rename, 'Rename')
-        map('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, 'Format Code')
         map('n', '<leader>cf', function() vim.lsp.buf.format({ async = true }) end, 'Format Code')
         map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, 'Code Action')
       end)

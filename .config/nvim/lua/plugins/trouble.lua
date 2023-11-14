@@ -4,7 +4,7 @@ return {
   keys = function()
     local t = require('trouble')
     return {
-      { '<leader>x', function() t.toggle('document_diagnostics') end, desc = 'Diagnostic' },
+      { '<leader>cx', function() t.toggle('document_diagnostics') end, desc = 'Diagnostic' },
     }
   end,
   opts = {},

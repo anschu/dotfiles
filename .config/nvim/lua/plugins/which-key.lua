@@ -18,6 +18,7 @@ return {
       [']'] = { name = 'Next' },
       ['['] = { name = 'Prev' },
       ['<leader>o'] = { name = 'Tools', _ = 'which_key_ignore' },
+      ['<leader>w'] = { name = 'Window', _ = 'which_key_ignore' },
     },
   },
   config = function(_, opts)

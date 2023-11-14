@@ -10,11 +10,6 @@ return {
         },
       },
     },
-    config = function()
-      if vim.o.background == "light" then
-        vim.cmd.colorscheme('dayfox')
-      end
-    end,
   },
 
   {
@@ -22,10 +17,5 @@ return {
     opts = {
       style = 'dark'
     },
-    config = function()
-      if vim.o.background == "dark" then
-        vim.cmd.colorscheme('vscode')
-      end
-    end,
   }
 }

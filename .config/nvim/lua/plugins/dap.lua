@@ -23,20 +23,20 @@ return {
           desc = 'Breakpoint Condition',
         },
         { '<leader>db', dap.toggle_breakpoint, desc = 'Toggle Breakpoint' },
-        { '<leader>dc', dap.continue, desc = 'Continue' },
-        { '<leader>dd', dap.continue, desc = 'Continue' },
-        { '<leader>dC', dap.run_to_cursor, desc = 'Run to Cursor' },
-        { '<leader>dg', dap.goto_, desc = 'Go to line (no execute)' },
-        { '<leader>di', dap.step_into, desc = 'Step Into' },
-        { '<leader>dj', dap.down, desc = 'Down' },
-        { '<leader>dk', dap.up, desc = 'Up' },
-        { '<leader>dl', dap.run_last, desc = 'Run Last' },
-        { '<leader>do', dap.step_out(), desc = 'Step Out' },
-        { '<leader>dO', dap.step_over, desc = 'Step Over' },
-        { '<leader>dp', dap.pause, desc = 'Pause' },
-        { '<leader>dr', dap.repl.toggle, desc = 'Toggle REPL' },
-        { '<leader>ds', dap.session, desc = 'Session' },
-        { '<leader>dt', dap.terminate, desc = 'Terminate' },
+        { '<leader>dc', dap.continue,          desc = 'Continue' },
+        { '<leader>dd', dap.continue,          desc = 'Continue' },
+        { '<leader>dC', dap.run_to_cursor,     desc = 'Run to Cursor' },
+        { '<leader>dg', dap.goto_,             desc = 'Go to line (no execute)' },
+        { '<leader>di', dap.step_into,         desc = 'Step Into' },
+        { '<leader>dj', dap.down,              desc = 'Down' },
+        { '<leader>dk', dap.up,                desc = 'Up' },
+        { '<leader>dl', dap.run_last,          desc = 'Run Last' },
+        { '<leader>do', dap.step_out(),        desc = 'Step Out' },
+        { '<leader>dO', dap.step_over,         desc = 'Step Over' },
+        { '<leader>dp', dap.pause,             desc = 'Pause' },
+        { '<leader>dr', dap.repl.toggle,       desc = 'Toggle REPL' },
+        { '<leader>ds', dap.session,           desc = 'Session' },
+        { '<leader>dx', dap.terminate,         desc = 'Terminate' },
       }
     end,
     config = function()
@@ -50,7 +50,7 @@ return {
             command = 'node',
             args = {
               require('mason-registry').get_package('js-debug-adapter'):get_install_path()
-                .. '/js-debug/src/dapDebugServer.js',
+              .. '/js-debug/src/dapDebugServer.js',
               '${port}',
             },
           },
@@ -69,6 +69,28 @@ return {
           }
         end
       end
+
+      dap.adapters.php = {
+        type = 'executable',
+        command = 'node',
+        args = {
+          require('mason-registry').get_package('php-debug-adapter'):get_install_path() ..
+          '/extension/out/phpDebug.js'
+        }
+      }
+
+      dap.configurations.php = {
+        {
+          type = 'php',
+          request = 'launch',
+          name = 'Listen for Xdebug',
+          port = 9003,
+          log = true,
+          pathMappings = {
+            ["/var/www/html"] = "${workspaceFolder}"
+          }
+        }
+      }
     end,
   },
 
@@ -78,7 +100,7 @@ return {
       local dapui = require('dapui')
       return {
         { '<leader>du', dapui.toggle, desc = 'Dap UI' },
-        { '<leader>de', dapui.eval, desc = 'Eval', mode = { 'n', 'v' } },
+        { '<leader>de', dapui.eval,   desc = 'Eval',  mode = { 'n', 'v' } },
       }
     end,
     opts = {},

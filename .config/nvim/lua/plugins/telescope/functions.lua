@@ -20,7 +20,7 @@ M.project_files = function()
   local cwd = get_project_root()
 
   if cwd then
-    require('telescope.builtin').find_files({ cwd = cwd })
+    require('telescope.builtin').find_files({ cwd = cwd, hidden = true })
   else
     if is_git_repo then
       require('telescope.builtin').git_files({ show_untracked = true })

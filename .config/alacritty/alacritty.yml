@@ -40,7 +40,8 @@ key_bindings:
   - { key: O, mods: Command|Shift, chars: "\x01\x10" }
   - { key: O, mods: Command, chars: "\x01o" }
   - { key: X, mods: Command, chars: "\x01x" }
-  - { key: L, mods: Command|Shift, chars: "\x01c" }
+  - { key: T, mods: Command, chars: "\x01c" }
+  - { key: Z, mods: Command, chars: "\x01z" }
   - { key: Key0, mods: Command, chars: "\x010" }
   - { key: Key1, mods: Command, chars: "\x011" }
   - { key: Key2, mods: Command, chars: "\x012" }

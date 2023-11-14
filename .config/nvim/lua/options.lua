@@ -16,7 +16,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 vim.o.winbar = ' '
 
-vim.g.netrw_liststyle = 3
+vim.g.netrw_liststyle = 1
 vim.g.netrw_hide = 0
 vim.g.netrw_keepdir = 0
 vim.g.netrw_sizestyle = 'H'
@@ -26,7 +26,22 @@ vim.g.netrw_localrmdir = 'rm -r'
 vim.g.netrw_winsize = 0
 vim.g.netrw_preview = 1
 
-local background = vim.fn.system("head -n1 $XDG_CONFIG_HOME/colorscheme | tr -d '\n'")
-if background then
-  vim.o.background = background
-end
+vim.api.nvim_create_user_command('ThemeSwitcher',
+  function(opts)
+    local background = vim.fn.system("head -n1 $XDG_CONFIG_HOME/colorscheme | tr -d '\n'")
+    if background then
+      vim.o.background = background
+    end
+
+    if (opts.fargs[1] == 'init') then return end
+
+    if vim.o.background == "dark" then
+      vim.cmd.colorscheme('vscode')
+    elseif vim.o.background == "light" then
+      vim.cmd.colorscheme('dayfox')
+    end
+  end,
+  { nargs = 1 }
+)
+
+vim.cmd.ThemeSwitcher('init')

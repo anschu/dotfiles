@@ -39,6 +39,10 @@ alias ss="sail artisanil shell"
 alias tinker="sail artisan tinker"
 alias sacc="sail artisan cache:clear"
 
+alias d="docker"
+alias dc="d compose"
+alias dce="dc exec"
+
 alias dot="/usr/bin/git --git-dir=$HOME/Repos/dotfiles/ --work-tree=$HOME"
 alias dotui="lazygit --git-dir=$HOME/Repos/dotfiles --work-tree=$HOME"
 

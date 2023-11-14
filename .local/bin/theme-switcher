@@ -32,8 +32,7 @@ switch_delta() {
 
 switch_neovim() {
 	for SERVER_PIPE in /var/folders/*/*/T/nvim."$USER"/*/nvim.*.0; do
-		CMD=":set background=$COLORSCHEME<CR>"
-		nvim --server "$SERVER_PIPE" --remote-send "$CMD" 2>/dev/null
+		nvim --server "$SERVER_PIPE" --remote-send ":ThemeSwitcher<CR>" 2>/dev/null
 	done
 }
 
